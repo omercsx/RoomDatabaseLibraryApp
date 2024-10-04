@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
@@ -21,7 +25,15 @@
         android:padding="12dp"
         android:minHeight="48dp" />
 
-    <EditText
+        <EditText
+            android:id="@+id/editDirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Director"
+            android:minHeight="48dp"
+            android:padding="12dp" />
+
+        <EditText
         android:id="@+id/editGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +48,12 @@
         android:hint="Year"
         android:padding="12dp"
         android:minHeight="48dp" />
+
+    <CheckBox
+        android:id="@+id/checkBoxFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favorite" />
 
     <Button
         android:id="@+id/buttonAdd"
@@ -61,6 +79,12 @@
         android:padding="12dp"
         android:minHeight="48dp" />
 
+    <ImageButton
+        android:id="@+id/buttonFavorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="match_parent"
@@ -77,10 +101,11 @@
         android:padding="12dp"
         android:minHeight="48dp" />
 
-    <TextView
-        android:id="@+id/textViewMovies"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:text="Movie List will appear here" />
+        <TextView
+            android:id="@+id/textViewMovies"
+            android:layout_width="match_parent"
+            android:layout_height="367dp"
+            android:padding="12dp"
+            android:text="Movie List will appear here" />
 </LinearLayout>
+</ScrollView>

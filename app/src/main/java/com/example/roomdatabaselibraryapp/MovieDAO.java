@@ -26,6 +26,10 @@ public interface MovieDAO {
     @Query("SELECT * FROM movies WHERE title LIKE '%' || :title || '%'")
     List<Movie> searchMoviesByTitle(String title);
 
+    // Retrieve Favorite Movies
+    @Query("SELECT * FROM movies WHERE favorite = 1")
+    List<Movie> getFavoriteMovies();
+
     // Update a movie
     @Update
     void update(Movie movie);
