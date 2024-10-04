@@ -7,6 +7,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(this::displayMovies);
                 });
             }
+            Toast.makeText(this, "Movie added successfully", Toast.LENGTH_SHORT).show();
         });
 
         // View all movies
@@ -91,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+            Toast.makeText(this, "Movie updated successfully", Toast.LENGTH_SHORT).show();
         });
 
         // Delete a movie
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+            Toast.makeText(this, "Movie deleted successfully", Toast.LENGTH_SHORT).show();
         });
 
         // Search movies by title
