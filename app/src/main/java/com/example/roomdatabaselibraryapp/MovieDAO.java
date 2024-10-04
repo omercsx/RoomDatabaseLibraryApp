@@ -22,6 +22,10 @@ public interface MovieDAO {
     @Query("SELECT * FROM movies WHERE id = :id")
     Movie getMovieById(int id);
 
+    // Search movies by title
+    @Query("SELECT * FROM movies WHERE title LIKE '%' || :title || '%'")
+    List<Movie> searchMoviesByTitle(String title);
+
     // Update a movie
     @Update
     void update(Movie movie);

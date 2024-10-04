@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonView = findViewById(R.id.buttonView);
         Button buttonUpdate = findViewById(R.id.buttonUpdate);
         Button buttonDelete = findViewById(R.id.buttonDelete);
+        Button buttonSearch = findViewById(R.id.buttonSearch);
 
         // Initialize database
         db = AppDatabase.getInstance(this);
@@ -95,6 +96,17 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+        // Search movies by title
+        buttonSearch.setOnClickListener(v -> {
+            String title = editTitle.getText().toString();
+            if (!title.isEmpty()) {
+                Executors.newSingleThreadExecutor().execute(() -> {
+                    List<Movie> movies = db.movieDao().searchMoviesByTitle(title);
+                    runOnUiThread(() -> displayMovies(title));
+                });
+            }
+        });
     }
 
     // Display all movies in the TextView
@@ -113,4 +125,20 @@ public class MainActivity extends AppCompatActivity {
             });
         });
     }
+
+    private void displayMovies(String title) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            List<Movie> movies = db.movieDao().searchMoviesByTitle(title);
+            runOnUiThread(() -> {
+                StringBuilder sb = new StringBuilder();
+                for (Movie movie : movies) {
+                    sb.append("ID: ").append(movie.getId()).append("\n")
+                            .append("Title: ").append(movie.getTitle()).append("\n")
+                            .append("Genre: ").append(movie.getGenre()).append("\n")
+                            .append("Year: ").append(movie.getReleaseYear()).append("\n\n");
+                }
+                textViewMovies.setText(sb.toString());
+            });
+        });
+    };
 }
