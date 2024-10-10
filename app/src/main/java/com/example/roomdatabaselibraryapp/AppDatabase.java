@@ -18,26 +18,10 @@ public abstract class AppDatabase extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "movie_database")
                     .fallbackToDestructiveMigration()
+                    .addMigrations(Migrations.MIGRATION_1_2)
+                    .addMigrations(Migrations.MIGRATION_1_3)
                     .build();
         }
         return instance;
     }
-
-    public static AppDatabase getDatabase(final Context context) {
-        if (instance == null) {
-            synchronized (AppDatabase.class) {
-                if (instance == null) {
-                    instance = Room.databaseBuilder(context.getApplicationContext(),
-                                    AppDatabase.class, "movie_database")
-                            .addMigrations(Migrations.MIGRATION_1_2)
-                            .addMigrations(Migrations.MIGRATION_1_3)
-                            .build();
-                }
-            }
-        }
-        return instance;
-    }
-
-
-
 }
